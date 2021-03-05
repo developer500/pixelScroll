@@ -1,0 +1,21 @@
+rule m4
+  command = m4 $in > $out
+  description = m4 $out
+
+rule z80asm
+  command = z80asm -O../build $in
+  description = z80asm $out
+
+rule asmlink
+  command = z80asm +zx81 -b $in
+  description = asmlink $out
+
+build ../build/pixelScroll.asm: m4 pixelScroll.asm.m4
+
+build ../build/randnum.o: z80asm randnum.asm
+build ../build/defs.o: z80asm defs.asm
+build ../build/testdisplay.o: z80asm testdisplay.asm
+build ../build/test.o: z80asm test.asm
+build ../build/pixelScroll.o: z80asm ../build/pixelScroll.asm
+
+build ../build/test.bin ../build/test.P: asmlink ../build/test.o ../build/randnum.o ../build/defs.o ../build/testdisplay.o ../build/pixelScroll.o 
