@@ -5,7 +5,7 @@ then scroll the display up one pixel, as fast as the ZX81 can.
 
 Written in Z80 assembly with m4 macro. Ninja build.
 
-![face](demo1.gif)
+![face](demo.gif)
 
 The ZX81 has block characters (0-7 and 128-136). Translate
 a given block character to a number between 0 and 15 using:
